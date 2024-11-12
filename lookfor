@@ -1,0 +1,15 @@
+#!/bin/bash
+
+# Check if an argument is provided
+if [ -z "$1" ]; then
+  echo "Usage: $0 <search_pattern>"
+  exit 1
+fi
+
+# Search for files and directories and display their last modified date
+find | grep "$1" | while read -r item; do
+  if [ -e "$item" ]; then
+    # Display file or directory name and last modified date
+    echo "$(date -r "$item" +"%Y-%m-%d %H:%M:%S") - $item"
+  fi
+done
